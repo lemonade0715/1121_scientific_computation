@@ -12,7 +12,7 @@ background = imread("./photos/shark_1.png");
 norm_background = norm(double(background), "fro");
 errors = zeros(1,11);
 for i=1:11
-    curr_img = imread(sprintf("./shark_result_sep%d.png", seps(i)));
+    curr_img = imread(sprintf("./results/shark_result_sep%d.png", seps(i)));
     errors(i) = 100 * norm(double(background - curr_img), "fro") / norm_background;
 end
 
