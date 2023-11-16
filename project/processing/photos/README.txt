@@ -1,0 +1,1 @@
+This directory is for photo converted from video, please do not delete this directory!
