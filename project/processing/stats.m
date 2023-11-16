@@ -27,11 +27,3 @@ ax2 = nexttile;
 plot(ax2,frames,errors,'k.-',MarkerSize=10);
 xlabel("Number of Used Frames (total=372)");
 ylabel("Relative Error (Frob., %)");
-%{
-index_vector = 1:min(m,n);
-plot(index_vector, norms(:,:,1), 'r-', index_vector, norms(:,:,2), 'g-', index_vector, norms(:,:,3), 'b-');
-title(['LRA of ',img_name,img_ext]);
-xlabel('Approximation Rank');
-ylabel(norm_name);
-grid on;
-%}

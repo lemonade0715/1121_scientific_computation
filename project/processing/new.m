@@ -12,10 +12,10 @@ end
 
 [x,y,z] = size(imread("./photos/shark_1.png"));
 X = zeros(x,y,z,"uint8");
-frame_sep = 60; % Set the separation of frames
-time = zeros(2,z); % Calculate time
+frame_sep = 6;
+%time = zeros(2,z);
 for channel=1:z
-    tic; % time
+    %tic;
     A = zeros(x*y, ceil(numFrames/frame_sep));
     frame_count = 1;
     for i=1:frame_sep:numFrames
@@ -25,18 +25,18 @@ for channel=1:z
         frame_count = frame_count + 1;
     end
     fprintf("Complete!\n\n");
-    time(1,channel) = toc; % time
-    tic; % time
+    %time(1,channel) = toc;
+    %tic;
     fprintf("Starting singular value decomposition of channel %d...\n", channel);
     [U,S,V] = svd(A,'econ');
     fprintf("Reshaping channel %d of the image...\n", channel);
     X(:,:,channel) = uint8(reshape(U(:,1) .* S(1,1) .* V(1,1), x, y));
     fprintf("Complete!\n\n");
-    time(2,channel) = toc; % time
+    %time(2,channel) = toc;
 end
 disp("Complete!");
-disp(time);
-%imshow(X);
+%disp(time);
+imshow(X);
 
 function init_directory(~)
     disp("Initializing directory './photos/'...");
