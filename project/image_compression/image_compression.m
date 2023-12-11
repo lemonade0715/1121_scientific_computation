@@ -1,6 +1,6 @@
 % Set Image Path and Rank
-imageFilePath = './otter.jpeg';
-sv_num = 135;
+imageFilePath = './wine.jpg';
+sv_num = 200;
 
 % Get Image Info
 img = imread(imageFilePath);
@@ -9,7 +9,7 @@ fprintf('image size: %dx%d, channel=%d\n', img_size_x, img_size_y, channels);
 sv_total = sv(double(img(:,:,1)));
 fprintf('singular value: %d/%d\n', sv_num, sv_total);
 comp_ratio = (img_size_x * img_size_y) / (sv_num * (img_size_x + img_size_y + 1));
-fprintf('compression ratio: %f', comp_ratio);
+fprintf('compression ratio: %f\n', comp_ratio);
 
 % Calculate the Low-Rank Approximation
 layer = zeros(img_size_x, img_size_y, channels);
@@ -23,14 +23,14 @@ title('');
 
 % Get Amount of Non-Zero Singular Values
 function result = sv(A)
-    [~, S, ~] = svd(A);
+    [~, S, ~] = svd(A, "econ");
     [result, ~] = size(find(diag(S) ~= 0));
 end
 
 % Low Rank Approximation
 function result = lr_approx(A, sv_num)
     [m, n] = size(A);
-    [U, S, V] = svd(A);
+    [U, S, V] = svd(A, "econ");
     V_conj = V';
     for rank=1:sv_num
         result = zeros([m, n]);

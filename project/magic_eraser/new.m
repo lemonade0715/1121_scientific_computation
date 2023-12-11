@@ -30,7 +30,9 @@ for channel=1:z
     fprintf("Starting singular value decomposition of channel %d...\n", channel);
     [U,S,V] = svd(A,'econ');
     fprintf("Reshaping channel %d of the image...\n", channel);
-    X(:,:,channel) = uint8(reshape(U(:,1) .* S(1,1) .* V(1,1), x, y));
+    disp("Singular Values:");
+    disp(diag(S));
+    X(:,:,channel) = uint8(reshape(U(:,3) .* S(3,3) .* V(3,1), x, y));
     fprintf("Complete!\n\n");
     %time(2,channel) = toc;
 end
