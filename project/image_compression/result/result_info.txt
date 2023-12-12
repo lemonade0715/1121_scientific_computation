@@ -1,0 +1,46 @@
+>> info
+
+info = 
+
+  struct with fields:
+
+                  Filename: './GitHub/1121_scientific_computation/project/image_compression/result/result_compression_fruit_orig.png'
+               FileModDate: '12-Dec-2023 21:36:03'
+                  FileSize: 1969475
+                    Format: 'png'
+             FormatVersion: []
+                     Width: 750
+                    Height: 800
+                  BitDepth: 48
+                 ColorType: 'truecolor'
+           FormatSignature: [137 80 78 71 13 10 26 10]
+                  Colormap: []
+                 Histogram: []
+             InterlaceType: 'none'
+              Transparency: 'none'
+    SimpleTransparencyData: []
+           BackgroundColor: []
+           RenderingIntent: []
+            Chromaticities: []
+                     Gamma: []
+               XResolution: []
+               YResolution: []
+            ResolutionUnit: []
+                   XOffset: []
+                   YOffset: []
+                OffsetUnit: []
+           SignificantBits: []
+              ImageModTime: '12 Dec 2023 13:36:02 +0000'
+                     Title: []
+                    Author: []
+               Description: []
+                 Copyright: []
+              CreationTime: []
+                  Software: []
+                Disclaimer: []
+                   Warning: []
+                    Source: []
+                   Comment: []
+                 OtherText: []
+
+>> 

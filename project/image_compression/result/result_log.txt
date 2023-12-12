@@ -1,62 +1,20 @@
 >> image_compression
-image size: 901x750, channel=3
+image size: 800x750, channel=3
 singular value: 1/750
-compression ratio: 409.049637
+compression ratio: 386.847195
 >> image_compression
-image size: 901x750, channel=3
+image size: 800x750, channel=3
 singular value: 10/750
-compression ratio: 40.904964
+compression ratio: 38.684720
 >> image_compression
-image size: 901x750, channel=3
+image size: 800x750, channel=3
 singular value: 50/750
-compression ratio: 8.180993
+compression ratio: 7.736944
 >> image_compression
-image size: 901x750, channel=3
+image size: 800x750, channel=3
 singular value: 100/750
-compression ratio: 4.090496
+compression ratio: 3.868472
 >> image_compression
-image size: 901x750, channel=3
+image size: 800x750, channel=3
 singular value: 200/750
-compression ratio: 2.045248
-
->> image_compression
-image size: 785x750, channel=3
-singular value: 1/750
-compression ratio: 383.300781
->> image_compression
-image size: 785x750, channel=3
-singular value: 10/750
-compression ratio: 38.330078
->> image_compression
-image size: 785x750, channel=3
-singular value: 50/750
-compression ratio: 7.666016
->> image_compression
-image size: 785x750, channel=3
-singular value: 100/750
-compression ratio: 3.833008
->> image_compression
-image size: 785x750, channel=3
-singular value: 200/750
-compression ratio: 1.916504
-
->> image_compression
-image size: 991x749, channel=3
-singular value: 1/749
-compression ratio: 426.340609
->> image_compression
-image size: 991x749, channel=3
-singular value: 10/749
-compression ratio: 42.634061 
->> image_compression
-image size: 991x749, channel=3
-singular value: 50/749
-compression ratio: 8.526812
->> image_compression
-image size: 991x749, channel=3
-singular value: 100/749
-compression ratio: 4.263406
->> image_compression
-image size: 991x749, channel=3
-singular value: 200/749
-compression ratio: 2.131703
+compression ratio: 1.934236

@@ -1,8 +1,11 @@
+% image_compression.m
+
 % Set Image Path and Rank
-imageFilePath = './wine.jpg';
-sv_num = 200;
+imageFilePath = './fruit.png';
+sv_num = 5;
 
 % Get Image Info
+info = imfinfo(imageFilePath);
 img = imread(imageFilePath);
 [img_size_x, img_size_y, channels] = size(img);
 fprintf('image size: %dx%d, channel=%d\n', img_size_x, img_size_y, channels);
@@ -16,10 +19,16 @@ layer = zeros(img_size_x, img_size_y, channels);
 for i=1:channels
     layer = double(img(:,:,i));
     result = lr_approx(layer, sv_num);
-    img(:,:,i) = uint8(result);
+    img(:,:,i) = uint16(result);
 end
+
+% Output and show the result
 imshow(img);
-title('');
+[~, imageName, imageExt] = fileparts(imageFilePath);
+if ~exist("result", 'dir')
+    mkdir("result");
+end
+imwrite(img, sprintf("./result/result_compression_%s_%d%s", imageName, sv_num, imageExt), "png");
 
 % Get Amount of Non-Zero Singular Values
 function result = sv(A)
