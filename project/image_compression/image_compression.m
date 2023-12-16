@@ -1,7 +1,7 @@
 % image_compression.m
 
 % Set Image Path and Rank
-imageFilePath = './fruit.png';
+imageFilePath = './result/result_compression_fruit_orig.png';
 sv_num = 5;
 
 % Get Image Info
