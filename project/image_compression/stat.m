@@ -29,7 +29,7 @@ end
 % Plot the values
 index_vector = 1:min(m,n);
 figure;
-plot(index_vector, errors(:), 'b-');
+plot(index_vector, errors(:), 'b-', 'LineWidth', 2);
 xlabel('Approximation Rank');
 ylabel(['Relative Error (', norm_name, ')']);
 grid on;
