@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+
+%                           theorem2.1.6
+
+%%%%                    induced matrix norm
+\begin{proof}
+    For any nonzero $\mathbf{x} \in \mathbb{C}^n$, \[\frac{\Vert A\mathbf{x} \Vert_\beta}{\Vert \mathbf{x} \Vert_\alpha} \leq \sup_{\mathbf{x} \neq 0}\frac{\Vert A\mathbf{x} \Vert_\beta}{\Vert \mathbf{x} \Vert_\alpha}=\Vert A \Vert_{\alpha,\beta}\]
+    we have 
+    \begin{equation}\label{equation1}
+        \Vert A\mathbf{x} \Vert_\beta \leq \Vert A \Vert_{\alpha,\beta} \Vert \mathbf{x} \Vert_\alpha.
+    \end{equation}
+    Given $A,B \in \mathbb{C}^{n \times n}$, for any $x \in \mathbb{C}^n$ with $\Vert \mathbf{x} \Vert_\alpha=1$, by equation \ref{equation1}
+    \[\Vert AB\mathbf{x} \Vert_\beta \leq \Vert A \Vert_{\alpha,\beta} \Vert B \mathbf{x}\Vert_\alpha \leq \Vert A \Vert_{\alpha,\beta}\Vert B \Vert_{\alpha,\beta} \Vert \mathbf{x} \Vert_\alpha. \]
+    Therefore $\Vert A \Vert_{\alpha,\beta}\Vert B \Vert_{\alpha,\beta} \Vert \mathbf{x} \Vert_\alpha$ is an upper bound for $\Vert AB\mathbf{x} \Vert_\beta$.
+    Moreover, 
+    \[\Vert AB \Vert_{\alpha,\beta}=\sup_{\Vert \mathbf{x} \Vert_\alpha= 1}{\Vert AB\mathbf{x} \Vert_\beta} \leq \Vert A \Vert_{\alpha,\beta}\Vert B \Vert_{\alpha,\beta}\]
+    Hence, the induced matrix norm is submultiplicative.
+\end{proof}
+
+
+%                            Frobenius norm
+\begin{proof}
+    Note that $A \in \mathbb{C}^{m \times n}$
+    \[\Vert A\Vert_F^2=\sum_{i=1}^m \Vert A_i \Vert_2^2=\sum_{j=1}^n \Vert a_j \Vert_2^2\]
+    where $A_i$ is the $i$th row of $A$ and $a_j$ is $j$th column of $A$. 
+    
+    Let $C=AB \in \mathbb{C}^{m \times p}$, then
+    \[\Vert C\Vert_F^2=\sum_{i=1}^m \sum_{j=1}^p {c_{ij}^2}=\sum_{i=1}^m \sum_{j=1}^p {(A_ib_j)^2}\]
+    by the Cauchy-Schwarz inequality, we have
+    \begin{align*}
+        \sum_{i=1}^m \sum_{j=1}^p {(A_ib_j)^2} 
+        &\leq \sum_{i=1}^m \sum_{j=1}^p {\Vert A_i \Vert_2^2 \Vert b_j \Vert_2^2}\\
+        &=\left(\sum_{i=1}^m{\Vert A_i \Vert_2^2}\right)\left(\sum_{j=1}^p{\Vert b_j \Vert_2^2}\right)\\
+        &=\Vert A \Vert_F^2 \Vert B \Vert_F^2
+    \end{align*}
+    Hence, we obtain $\Vert AB\Vert_F^2 \leq \Vert A \Vert_F^2 \Vert B \Vert_F^2$, i.e.,$\Vert AB\Vert_F \leq \Vert A \Vert_F \Vert B \Vert_F$
+\end{proof}
+
+
+
+%                           theorem2.1.7
+\begin{lemma}
+    Let $U\in \mathbb{C}^{n\times n}$ be unitary matrix, $\mathbf{x}\in \mathbb{C}^n$. Then
+    \[\Vert U\mathbf{x} \Vert_2=\Vert \mathbf{x} \Vert_2\]
+\end{lemma}
+
+\begin{proof}
+     $\Vert U\mathbf{x} \Vert_2^2=\langle U\mathbf{x},U\mathbf{x}\rangle=\langle x,U^*U\mathbf{x}\rangle=\langle \mathbf{x},\mathbf{x}\rangle=\Vert \mathbf{x} \Vert_2^2$, i.e.,$\Vert U\mathbf{x} \Vert_2=\Vert \mathbf{x} \Vert_2$
+\end{proof}
+
+theorem2.1.7
+%                       induced matrix norm
+%我目前只找到 alpha beta＝2時的特例
+\begin{proof}
+    For $\alpha =\beta =2$, let $\mathbf{z}=V\mathbf{x}$
+    \begin{align*}
+        \Vert UAV \Vert_2
+        &=\sup_{\mathbf{x}\neq 0}{\frac{\Vert U(AV\mathbf{x}) \Vert_2}{\Vert \mathbf{x} \Vert_2}}=\sup_{\mathbf{x}\neq 0}{\frac{\Vert AV\mathbf{x} \Vert_2}{\Vert \mathbf{x} \Vert_2}}\\
+        &=\sup_{\mathbf{z}\neq 0}{\frac{\Vert A\mathbf{z} \Vert_2}{\Vert V^*\mathbf{z} \Vert_2}}=\sup_{\mathbf{z}\neq 0}{\frac{\Vert A\mathbf{z} \Vert_2}{\Vert \mathbf{z} \Vert_2}}\\
+        &=\Vert A \Vert_2
+    \end{align*}
+\end{proof}
+
+%                               Frobenius norm
+\begin{proof}
+    \begin{align*}
+        \Vert UAV\Vert_F^2
+        &=trace((UAV)^*(UAV))\\
+        &=trace(V^*A^*U^*UAV)\\
+        &=trace(V^*A^*AV)\\
+        &=trace(A^*A)\\
+        &=\Vert A\Vert_F^2.
+    \end{align*}
+    Hence, The Frobenius norm is unitarily invariant.
+\end{proof}
+
+%                           Example 2.1.9
+\begin{proof}
+    suppose $rank(A)=r \leq \min{(m,n)}$, by Theorem 1.2.2, we have $A=U \Sigma V^*$, then $A^*A=VDV^*$, 
+    \[ D =
+    \left[\begin{array}{ccc|ccc}
+    \sigma_1^2& & & & & \\
+         &\ddots& & & & \\
+          & &\sigma_r^2& & & \\ \hline
+           & & &0& & \\
+            & & & &\ddots& \\
+             & & & & &0
+    \end{array}
+    \right]
+    \qquad \text{and} \qquad
+    V = 
+    \begin{bmatrix}
+        | & | &  & | \\
+        \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \\
+        | & | &  & |
+    \end{bmatrix}.
+    \]
+    $\{\mathbf{v}_1,\mathbf{v}_2,\cdots ,\mathbf{v}_n\}$ is an orthonormal basis, we sort as $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r$.\\
+    A nonzero $\mathbf{x} \in \mathbb{C}^n$, 
+    \[\mathbf{x}=\sum_{i=1}^n{c_iv_i} \quad \text{with}\quad \sum_{i=1}^n{c_i}^2=\Vert \mathbf{x} \Vert_2^2.\]
+    Then $\Vert A\mathbf{x} \Vert_2^2=\langle A\mathbf{x},A\mathbf{x}\rangle=\langle A^*A\mathbf{x},\mathbf{x}\rangle$
+    \begin{align*}
+        \langle A^*A\mathbf{x},\mathbf{x}\rangle
+        &=\left\langle\sum_{i=1}^n{c_iA^*Av_i},\sum_{i=1}^n{c_iv_i}\right\rangle\\
+        &=\left\langle\sum_{i=1}^n{c_i\sigma_i^2 v_i},\sum_{i=1}^n{c_iv_i}\right\rangle=\sum_{i=1}^n{\sigma_i^2}{c_i}^2\\
+        &\leq  \sum_{i=1}^n{\sigma_1^2}{c_i}^2=\sigma_1^2 \sum_{i=1}^n{c_i}^2=\sigma_1^2\Vert \mathbf{x} \Vert_2^2.
+    \end{align*}
+    Therefore we obtain $\frac{\Vert A\mathbf{x} \Vert_2^2}{\Vert \mathbf{x} \Vert_2^2} \leq \sigma_1^2$, i.e.,$\frac{\Vert A\mathbf{x} \Vert_2}{\Vert \mathbf{x} \Vert_2} \leq \sigma_1$. If we choose $\mathbf{x}=\mathbf{v_1}$, the inequality change into an equality. Hence, we conclude that
+    \[\Vert A \Vert_2=\sup_{\mathbf{x} \neq 0}\frac{\Vert A\mathbf{x} \Vert_2}{\Vert \mathbf{x} \Vert_2}=\sigma_1=\sigma_{max}(A)\]    
+\end{proof}
+%這些是參考資料
+%https://www.math.drexel.edu/~foucart/TeachingFiles/F12/M504Lect5.pdf#page2
+%https://www.math.drexel.edu/~foucart/TeachingFiles/F12/M504Lect5.pdf#page2
+%https://www.sjsu.edu/faculty/guangliang.chen/Math250/lec7matrixnorm.pdf
+%https://nhigham.com/2021/02/02/what-is-a-unitarily-invariant-norm/
+% Stephen H. Friedberg, Arnold J. Insel, Lawrence E. Spence. Linear Algebra, 4th edition. Pearson Education, Upper Saddle River, New Jersey.
+\end{document}

@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[top=2cm,left=2.5cm,right=2.5cm,bottom=2cm,a4paper]{geometry}
+\usepackage{setspace}
+\doublespacing
+\usepackage{enumerate}
+%\parindent=0pt
+\theoremstyle{definition}
+
+\newtheorem{df1}{Definition}
+\newtheorem*{prop1}{Proposition 1}
+\newtheorem*{prop2}{Proposition 2}
+\newtheorem*{prop3}{Proposition 3}
+\newtheorem{thm1}{Theorem}
+\newtheorem*{thm2}{Theorem(Singular Value Decomposition Theorem for Matrix)}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\vspace*{5cm}
+    \textbf{\Huge SVD}
+\end{center}
+\end{titlepage}
+
+\hrule
+
+\section{Introduction to SVD}
+\subsection{Definition}
+\begin{df1}
+    A $\in M_{m\times n}(\mathbb{R})$ is positive definite if 
+    $x^TAx>0$ for all $x \in \mathbb{R}^n\backslash\{0\}$; 
+    A is positive semidefinite if 
+    $x^TAx \geq 0$ for all $x \in \mathbb{R}^n$.
+\end{df1}
+
+\subsubsection{Propsition}
+\begin{prop1}
+Let A $\in M_{m\times n}(\mathbb{R})$. Then
+    \begin{enumerate}[a).]
+        \item $A^TA$ is positive semidefinite
+        \item $A^TA$ is symmetric\quad (i.e.\; $(A^TA)_{ij}=(A^TA)_{ji}$)
+    \end{enumerate}
+\end{prop1}
+
+\textbf{Proof of 1.a)}\quad Let $x \in \mathbb{R}^n$, 
+$x^T(A^TA)x=(x^TA^T)(Ax)=(Ax)^T(Ax)=\|{Ax}\|^2 \geq 0.$
+
+\textbf{Proof of 1.b)}\quad $(A^TA)^T=A^T(A^T)^T=A^TA$
+
+\begin{prop2}
+    Let A $\in M_{m\times n}(\mathbb{R})$. Then
+    \(rank(A)=rank(A^TA)\)
+\end{prop2}
+
+\textbf{Proof:}\quad It suffices to show that $Null(A)=Null(A^TA)$. Let $x\in Null(A)$. Then $(A^TA)x=A^T0=0$. So we have $x\in Null(A^TA)$. On the other hand, let $x\in Null(A^TA)$. We have $A^TAx=0$. Then $0=\langle 0,x\rangle=\langle A^TAx,x \rangle=\langle Ax,Ax \rangle=||Ax||^2$. So we have $x\in Null(A)$. We conclude that $Null(A)=Null(A^TA)$, hence 
+\[rank(A)=n-nullity(A)=n-nullity(A^TA)=rank(A^TA)\]
+
+\begin{prop3}
+    A is positive semidefinite matrix. Then all eigenvalues of A are greater than or equal to 0
+\end{prop3}
+
+\textbf{Proof:}\quad Let $\lambda$ be an eigenvalue of $A$ and $x$ be an eigenvector of $A$ corresponding to eigenvalue $\lambda$. Then $x^TAx=x^T\lambda x=\lambda x^Tx$, hence 
+\[\lambda=\frac{x^TAx}{x^Tx} \geq 0\]
+
+\subsection{Theorem}
+
+\subsubsection{Thm1}
+\begin{thm1}\label{1.}
+    Let $A$ be an $m\times n$ matrix and $B$ be an $n\times \ell$ matrix.
+    For each j $(1\leq j\leq \ell)$
+    let $u_j$ and $v_j$ denote the $j$th columns of $AB$ and $B$,respectively. Then
+    \begin{enumerate}[a.)]
+        \item $u_j=Av_j$
+        \item $v_j=Be_j$, where $e_j$ is the $j$th standard vector of $\mathbb{R}^\ell$
+    \end{enumerate}
+\end{thm1}
+
+\textbf{Proof of a)}
+\[u_j=\begin{pmatrix}
+        (AB)_{1j}\\
+        (AB)_{2j}\\
+        \vdots\\
+        (AB)_{mj}
+       \end{pmatrix}=
+    \begin{pmatrix}
+        \sum\limits_{k=1}^n{A_{1k}B_{kj}}\\
+        \sum\limits_{k=1}^n{A_{2k}B_{kj}}\\
+        \vdots\\
+        \sum\limits_{k=1}^n{A_{mk}B_{kj}}\\
+    \end{pmatrix}=A
+    \begin{pmatrix}
+        B_{1j}\\
+        B_{2j}\\
+        \vdots\\
+        B_{nj}
+    \end{pmatrix}=Av_j\]
+
+\textbf{Proof of b)}\quad $v_j$ is jth column of $B=BI_\ell$, 
+$e_j$ is $j$th column of $I_\ell$. By the result of (a), we have $v_j=Be_j$
+
+\subsubsection{Thm2}
+\begin{thm2}
+Let $A$ be an $m\times n$ matrix of rank r with the positive singular values $\sigma_1\geq \sigma_2\geq \cdots \geq \sigma_r$
+, and let $\Sigma$ be the $m \times n$ matrix defined by
+\[\Sigma_{ij}=\begin{cases}
+    \sigma_i & if\ i=j\leq r\\
+    0 & otherwise.
+\end{cases}\]
+Then there exists an $m\times m$ orthogonal matrix U and an $n\times n$ orthogonal matrix V such that
+\[A=U\Sigma V^T\]
+\end{thm2}
+
+\textbf{Proof:}\quad
+$A^TA$ is positive semidefinite semidefinite, and hence there is an
+orthonormal basis $\beta_1=\{v_1,\cdots,v_n\}$ for $\mathbb{R}^n$ consisting of eigenvectors of $A^TA$ with corresponding eigenvalues $\lambda_i \geq 0$. Since $rank(A^TA)=rank(A)=r$, $\lambda_i=0$ for each $i>r$. We order the eigenvalues and eigenvectors in $\beta_1$ so that $\lambda_1 \geq \cdots \geq \lambda_r$. For $1\leq i\leq r$, define
+\begin{align*}
+    \sigma_i&=\sqrt{\lambda_i}\\
+    u_i&=\frac{1}{\sigma_i}Av_i.
+\end{align*}
+
+We show that $\{u_1,\cdots,u_r\}$ is an orthonormal subset of $\mathbb{R}^m$. For $1\leq i,j\leq r$. Then
+\begin{align*}
+\langle u_i,u_j\rangle&=\langle\frac{1}{\sigma_i}Av_i,\frac{1}{\sigma_j}Av_j\rangle\\
+&=\frac{1}{\sigma_i\sigma_j}\langle Av_i,Av_j\rangle\\
+&=\frac{1}{\sigma_i\sigma_j}\langle A^TAv_i,v_j\rangle\\
+&=\frac{1}{\sigma_i\sigma_j}\langle \lambda_iv_i,v_j\rangle\\
+&=\frac{{\sigma_i}^2}{\sigma_i\sigma_j}\langle v_i,v_j\rangle\\
+&=\delta_{ij}
+\end{align*}
+and hence $\{u_1,\cdots,u_r\}$ is orthonormal. This can be extended to an orthonormal basis $\beta_2=\{u_1,\cdots,u_m\}$ for $\mathbb{R}^m$. Clearly $Av_i=\lambda_iu_i$ if $1\leq i\leq r$. If $i>r$, then $A^TAv_i=0$, and so $Av_i=0$\ $(\because Null(A^TA)=Null(A))$.
+
+Let $U$ be the $m\times m$ matrix, \[U=
+\begin{bmatrix}
+    |&|& &|\\
+    u_1&u_2&\cdots&u_m\\
+    |&|& &|
+\end{bmatrix}_{m\times m}\]
+ and let $V$ be the $n\times n$ matrix\[V=
+ \begin{bmatrix}
+    |&|& &|\\
+    v_1&v_2&\cdots&v_n\\
+    |&|& &|
+\end{bmatrix}_{n\times n}\] 
+Note that both $U$ and $V$ are orthogonal matrices. By Theorem \ref{1.}, the $j$th column of $AV$ is $Av_j=\sigma_j u_j$. The $j$th column of $\Sigma$ is $\sigma_j e_j$, where $e_j$ is the $j$th standard vector of $\mathbb{R}^m$. So by Theorem \ref{1.} (a.) and (b.), the $j$th column of $U\Sigma$ is 
+\[U(\sigma_j e_j)=\sigma_jU(e_j)=\sigma_j u_j.\]
+$AV$ and $U\Sigma$ are both $m\times n$ matrices, and the $j$th columns of $AV$ and $U\Sigma$ are equal, hence $AV=U\Sigma$. Therefore $A=AVV^T=U\Sigma V^T$
+
+\end{document}

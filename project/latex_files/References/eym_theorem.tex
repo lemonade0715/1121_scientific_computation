@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\newtheorem{EYM}{Theorem}
+
+\begin{document}
+    \begin{EYM}[Eckart-Yonug-Mirsky]
+        Let $A \in \mathbb{R}^{m\times n}$ with $rank(A)=r$. The singular value decomposition of $A$ is $U\Sigma V^\top=\sum\limits_{i=1}^r{\sigma_iu_iv_i^\top}$. 
+        And we denotes $A_k=\sum\limits_{i=1}^k{\sigma_iu_iv_i^\top}$, where $k\leq r$. Then for any  $B \in \mathbb{R}^{m\times n}$ with $rank(B)=k$,
+        \[\Vert A-A_k \Vert_2 \leq \Vert A-B\Vert_2\]
+    \end{EYM}
+
+    \begin{proof}
+        First we need to show $\Vert A-A_k \Vert_2=\sigma_{k+1}$.
+        \begin{align*}
+            \Vert A-A_k \Vert_2 
+            &=\left\Vert \sum_{i=1}^r{\sigma_iu_iv_i^\top}-\sum_{i=1}^k{\sigma_iu_iv_i^\top} \right\Vert_2\\
+            &=\left\Vert \sum_{i=k+1}^r{\sigma_iu_iv_i^\top}\right\Vert_2\\
+            &=\left\Vert \sigma_{k+1}u_{k+1}v_{k+1}^\top+\cdots+\sigma_ru_rv_r^\top+0u_1v_1^\top+\cdots+0u_kv_k^\top\right\Vert_2.
+        \end{align*}
+        By Example 2.1.9, $\Vert A-A_k \Vert_2=\sigma_{max}(A-A_k)=\sigma_{k+1}$.
+
+        Next, we want to find a unit vector $\mathbf{x}$ satisfies $\mathbf{x} \in \text{Col}(V') \cap \text{Null}(B)$, where $V'=\begin{bmatrix}
+            \mathbf{v_1}&\mathbf{v_2}&\cdots&\mathbf{v_k}&\mathbf{v_{k+1}}
+        \end{bmatrix}$.
+        
+        Let $\mathbf{x}=c_1\mathbf{v_1}+\cdots+c_{k+1}\mathbf{v_{k+1}}=V'\mathbf{c}$. Then $B\mathbf{x}=BV'\mathbf{c}=\mathbf{0}$. Since $rank(B)$ is $k$, hence $rank(BV')$ is at most $k$. And $\mathbf{c}$ is a vector in $\mathbb{R}^{k+1}$. So the solution of $BV'\mathbf{c}=\mathbf{0}$ must exists. Then normalized $\mathbf{x}$, so $\mathbf{x}=V'\frac{\mathbf{c}}{\Vert\mathbf{c}\Vert_2}$, we exactly find a unit vector $\mathbf{x}$ in the null space of $B$ and column space of $V'$.
+
+        Now, the $\Vert A-B \Vert_2$ will be
+        \begin{align*}
+            \Vert A-B \Vert_2
+            &=\sup_{\Vert \mathbf{x}\Vert_2=1}{\Vert(A-B)\mathbf{x}\Vert_2}\geq \Vert(A-B)\mathbf{x}\Vert_2\\
+            &=\Vert A\mathbf{x}-B\mathbf{x}\Vert_2\\
+            &=\Vert A\mathbf{x}\Vert_2\\
+            &=\left\Vert \frac{c_1}{\Vert\mathbf{c}\Vert_2}\sigma_1\mathbf{u_1}+\frac{c_2}{\Vert\mathbf{c}\Vert_2}\sigma_2\mathbf{u_2}+\cdots+\frac{c_{k+1}}{\Vert\mathbf{c}\Vert_2}\sigma_{k+1}\mathbf{u_{k+1}}\right\Vert_2\\
+            &=\sqrt{\left(\frac{c_1}{\Vert\mathbf{c}\Vert_2}\sigma_1\right)^2+\left(\frac{c_2}{\Vert\mathbf{c}\Vert_2}\sigma_2\right)^2+\cdots+\left(\frac{c_{k+1}}{\Vert\mathbf{c}\Vert_2}\sigma_{k+1}\right)^2}\\
+            &\geq \sqrt{\left(\frac{c_1}{\Vert\mathbf{c}\Vert_2}\sigma_{k+1}\right)^2+\left(\frac{c_2}{\Vert\mathbf{c}\Vert_2}\sigma_{k+1}\right)^2+\cdots+\left(\frac{c_{k+1}}{\Vert\mathbf{c}\Vert_2}\sigma_{k+1}\right)^2}\\
+            &=\sigma_{k+1}.
+        \end{align*}
+        So we have $\sigma_{k+1}\leq \Vert A-B \Vert_2$. 
+        Hence, $\Vert A-A_k \Vert_2=\sigma_{k+1}\leq \Vert A-B \Vert_2$, and we complete the proof.
+    \end{proof}
+\end{document}
